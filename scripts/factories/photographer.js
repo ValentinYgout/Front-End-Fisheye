@@ -79,7 +79,7 @@ function photographerFactory(data) {
     photographerTagline.classList.add('photograph-header-tagline');
 
     // Set text content
-    console.log(name, "headerdom")
+ 
     photographerName.textContent = name;
     photographerCity.textContent = city;
     photographerTagline.textContent = tagline;

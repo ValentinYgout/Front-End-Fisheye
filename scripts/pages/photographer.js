@@ -7,7 +7,7 @@ const id = parseInt(params.get('id'));
 let displayedMedia;
 
 
-console.log(id)
+
 
 
 
@@ -18,7 +18,7 @@ async function getPhotographers() {
 
   photographers = await res.json();
 
-  console.log(photographers)
+  
   return photographers
 }
 
@@ -72,9 +72,7 @@ function displayMedia(media) {
     .insertAdjacentElement('beforeend', mediaElement);
   displayedMedia = [...mediaElement.children];
 
-  console.log(mediaElement, 'mediaelement')
-  console.log(displayedMedia, 'displayed media')
-  console.log(typeof (media), 'type')
+
 
   // element HTML vers l'objet, pour faciliter la réorganisation
   media.forEach((el, i) => (el.html = displayedMedia[i]));
@@ -110,6 +108,9 @@ function listenForLikes(photographer) {
   const hearts = document.querySelectorAll('.media-card-heart-btn');
   hearts.forEach((heart, index) => {
     heart.addEventListener('click', () => {
+
+       // reset index in case sorting modified it, to display the right picture
+      index = displayedMedia.indexOf(heart.parentNode.parentNode)
       toggleLike(photographer.media[index], index);
       updateTotalLikes(photographer);
     });
@@ -229,7 +230,7 @@ async function init() {
   // Get photograph data
   let photographer = await getPhotographer();
   let media = photographer.media
-  console.log(photographer, "after")
+
 
 
 
